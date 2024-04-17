@@ -1,6 +1,6 @@
 package Conversor;
 
-public class Converison {
+public class Conversion {
 
 	private final static double KM_A_MILLAS = 0.621371;
 
@@ -14,7 +14,7 @@ public class Converison {
 		
 	}
 
-	public double millas(double km) {
+	public static double millas(double km) {
 		return KM_A_MILLAS * km;
 
 	}
@@ -24,7 +24,7 @@ public class Converison {
 		return KM_A_MILLAS * millas;
 	}
 
-	public double atmosferas(double milibares) {
+	public static double atmosferas(double milibares) {
 
 		return MB_A_ATM * milibares;
 	}
@@ -34,7 +34,7 @@ public class Converison {
 		return MB_A_ATM * atmosferas;
 	}
 
-	public double julios(double calorias) {
+	public static double julios(double calorias) {
 
 		return CAL_A_JULIOS * calorias;
 	}
