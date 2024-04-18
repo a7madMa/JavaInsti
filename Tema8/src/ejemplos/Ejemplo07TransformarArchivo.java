@@ -41,6 +41,8 @@ public class Ejemplo07TransformarArchivo {
 
 				// Leemos la siguiente línea del archivo.
 				linea = bufferLectura.readLine();
+				
+				
 			}
 
 			// Cerramos los buffers.
