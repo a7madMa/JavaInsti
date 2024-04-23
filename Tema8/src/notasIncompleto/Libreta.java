@@ -4,7 +4,7 @@ public class Libreta {
 
 	private final String NOMBRE_ARCHIVO = "ficheros/notas.txt";
 	private final int MAX_NOTAS = 1000;
-
+//hola que tal
 	private Nota[] notas;
 	private int numNotas;
 

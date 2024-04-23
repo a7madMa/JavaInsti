@@ -4,7 +4,7 @@ public class Nota {
 
 	private String titulo;
 	private String descripcion;
-
+// hola que tal
 	public Nota(String titulo, String descripcion) {
 		this.titulo = titulo;
 		this.descripcion = descripcion;
