@@ -28,7 +28,7 @@ import javax.swing.event.ListSelectionListener;
 public class Main extends JFrame implements ListSelectionListener {
 
 	private Libreta libreta;
-// hola que tal
+
 	private JList<String> lstTitulos;
 	private DefaultListModel<String> modeloLista;
 	private JTextField txtTitulo;
