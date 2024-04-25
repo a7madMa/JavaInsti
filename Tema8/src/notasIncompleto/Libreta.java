@@ -2,7 +2,7 @@ package notasIncompleto;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -36,6 +36,7 @@ public class Libreta {
 			notas[numNotas] = nota;
 			numNotas++;
 		}
+
 	}
 
 	public void setNota(int posicion, Nota nota) {
@@ -67,59 +68,87 @@ public class Libreta {
 		 * encuentra el archivo, hacer que se muestre el mensaje indicado en el
 		 * enunciado de la práctica. Si se produce otro tipo de excepción, mostrar un
 		 * JOptionPane explicándolo.
-		 *
+		 * 
 		 * La información de cada nota está guardada en dos líneas de texto, una para el
 		 * título y otra para la descripción. Puedes usar el método split() para separar
 		 * los datos de los comentarios del archivo.
 		 */
 
-		File archivo = new File(NOMBRE_ARCHIVO);
-		BufferedWriter bw;
+		// Este método lo que hace es comprobar si el objeto de tipo File exsiste
+		try {
 
-		if (archivo.exists()) {
-			return;
-		} else {
-			try {
-				JOptionPane.showMessageDialog(null,
-						"No se ha podido encontrar un archivo válido de tareas.\n Se creará uno nuevo automáticamente.",
-						"Archivo de tareas no econtrado", JOptionPane.WARNING_MESSAGE);
-				bw = new BufferedWriter(new FileWriter(archivo));
-			} catch (IOException e) {
-				JOptionPane.showMessageDialog(null, "Se ha encontrado un error de entrada/salida.", "Mensaje",
-						JOptionPane.ERROR_MESSAGE);
-			}
-			try (BufferedReader br = new BufferedReader(new FileReader(archivo))) {
-				String linea;
-				int i = 0;
-				while ((linea = br.readLine()) != null) {
-					String titulo = linea;
-					String separado[] = linea.split("=");
-					String descripcion = br.readLine().substring(12);
+			BufferedReader br = new BufferedReader(new FileReader(NOMBRE_ARCHIVO));
+			String linea = br.readLine();
+			String titulo;
+			while (linea != null) {
 
-					notas[i++] = new Nota(titulo, descripcion);
-					if (i >= MAX_NOTAS) {
-						break;
-					}
-
+				if (linea.length() >= 7) {
+					titulo = linea.substring(7);
+				} else {
+					return;
 				}
 
-				numNotas = i;
-			} catch (IOException e) {
-				JOptionPane.showMessageDialog(null, "Error al leer el archivo de notas: " + e.getMessage(),
-						"Error de lectura", JOptionPane.ERROR_MESSAGE);
-			}
-		}
+				linea = br.readLine();
 
+				String descripcion;
+
+				if (linea != null && linea.length() >= 12) {
+					descripcion = linea.substring(12);
+				} else {
+					return;
+				}
+
+				Nota nota = new Nota(titulo, descripcion);
+				addNota(nota);
+				linea = br.readLine();
+			}
+			br.close();
+
+			// CÓDIGO DE PRUEBAS
+//				System.out.println("Array notas:");
+//				for (int i = 0; i < numNotas; i++) {
+//					System.out
+//							.println("Título: " + notas[i].getTitulo() + "\nDescripción: " + notas[i].getDescripcion());
+//				}
+
+		} catch (FileNotFoundException e) {
+			JOptionPane.showMessageDialog(null, "No se ha encontrado el archivo " + NOMBRE_ARCHIVO,
+					"Archivo de tareas no encontrado", JOptionPane.WARNING_MESSAGE);
+
+		} catch (IOException e) {
+			JOptionPane.showMessageDialog(null, "No se ha podido leer el archivo de tareas" + NOMBRE_ARCHIVO,
+					"Error de E/S", JOptionPane.ERROR_MESSAGE);
+		}
 	}
 
 	public void guardarNotas() {
 
 		/*
-		 * TODO: Guardar las notas del array notas[] en el archivo "notas.txt". El
-		 * formato en que se guardarán debe ser el que aparece en el enunciado de la
-		 * práctica. Si se produce una excepción, se mostrará el error que aparece en el
-		 * enunciado.
+		 * Guardar las notas del array notas[] en el archivo "notas.txt". El formato en
+		 * que se guardarán debe ser el que aparece en el enunciado de la práctica. Si
+		 * se produce una excepción, se mostrará el error que aparece en el enunciado.
 		 */
+		try {
+
+			BufferedWriter bw = new BufferedWriter(new FileWriter(NOMBRE_ARCHIVO));
+
+			for (int i = 0; i < numNotas; i++) {
+
+				bw.write("TITULO:" + notas[i].getTitulo() + "\n" + "DESCRIPCION=" + notas[i].getDescripcion());
+
+				bw.newLine();
+
+			}
+
+			bw.close();
+
+		} catch (IOException e) {
+
+			JOptionPane.showMessageDialog(null, "No se ha podido guardar el archivo de tareas" + NOMBRE_ARCHIVO,
+
+					"Error de E/S", JOptionPane.ERROR_MESSAGE);
+
+		}
 
 	}
 

@@ -1,3 +1,4 @@
+package ejemploJavadoc;
 
 import java.awt.FlowLayout;
 import java.awt.event.ItemEvent;
@@ -11,36 +12,44 @@ import javax.swing.JLabel;
  * Clase que muestra una ventana donde el usuario puede elegir los extras de un
  * viaje.
  * <p>
- * El usuario podrá elegir unos de estos cuatro paquetes: billetes de avión,
- * transporte al aeropuerto, hotel y pensión completa.
+ * El usuario podrá elegir uno de estos cuatro paquetes:
+ * <ul>
+ * <li>Billetes de avión</li>
+ * <li>Transporte al aeropuerto</li>
+ * <li>Hotel</li>
+ * <li>Pensión completa</li>
+ * </ul>
+ * Esta clase utiliza la clase {@link Extras}
  * 
- * @author Ahmad
- * @version 1.0, 24 April 2024
- * @See Extras
- * 
+ * @author Carlos Sogorb
+ * @version 1.0, 24 May 2024
+ * @see Extras
  */
 public class Ejemplo01Javadoc extends JFrame {
 
 	/**
-	 * Casilla que el usuario puede marcar para seleccionar los bileetes de avión.
+	 * Casilla que el usuario puede marcar para seleccionar los billetes de avión.
 	 * <p>
-	 * JCheckBox donde el usuario hace clic con el ratón y bla, bla, bla....
+	 * JCheckbox donde el usuario hace clic con el ratón y bla, bla, bla....
 	 */
 	private JCheckBox checkAvion;
+
 	/**
 	 * Casilla que el usuario puede marcar para seleccionar el transporte al
-	 * aeropuerto
+	 * aeropuerto.
 	 */
 	private JCheckBox checkAeropuerto;
+
 	/**
-	 * Casilla que el ususario puede marcar para seleccionar la estancia del hotel.
+	 * Casilla que el usuario puede marcar para seleccionar la estancia en el hotel.
 	 */
 	private JCheckBox checkHotel;
+
 	/**
 	 * Casilla que el usuario puede marcar para seleccionar la pensión completa.
 	 */
-
 	private JCheckBox checkPensionCompleta;
+
 	/**
 	 * Etiqueta que mostrará en cada momento el coste de las opciones seleccionadas.
 	 */
@@ -114,7 +123,6 @@ public class Ejemplo01Javadoc extends JFrame {
 	 * 
 	 * @return el precio total del viaje.
 	 */
-
 	private double actualizaPrecio() {
 
 		int precioTotal = 0;
@@ -133,17 +141,19 @@ public class Ejemplo01Javadoc extends JFrame {
 		}
 
 		lblPrecioTotal.setText("Precio total: " + precioTotal + " €");
+
 		return precioTotal;
+
 	}
 
 	/**
 	 * Método que nos inventamos para probar la documentación del Javadoc
 	 * 
-	 * @param nombreViajero Nombre del viajero.
+	 * @param nombreViajero Nombre del viajero
 	 * @param edadViajero   Edad del viajero
-	 * @return Cadena con las opciones elegidas.
+	 * @return Cadena con las opciones elegidas o <code>null</code>.
 	 */
-	private String mostrarOperaciones(String nombreViajero, int edadViajero) {
+	private String mostrarOpciones(String nombreViajero, int edadViajero) {
 		return null;
 	}
 
