@@ -156,4 +156,12 @@ public class Libreta {
 		return numNotas;
 	}
 
+	public boolean hayEspacio() {
+		if (numNotas < MAX_NOTAS) {
+			return true;
+
+		}
+		return false;
+	}
+
 }
