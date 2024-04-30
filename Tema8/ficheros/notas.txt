@@ -1,2 +1,4 @@
-TITULO=compra de la semana
-DESCRIPCION=Comprar el plutonio para el condensador de fluzo
+TITULO:hola que tal
+DESCRIPCION=me valeesç
+TITULO:hola 
+DESCRIPCION=adios
