@@ -1,4 +1,4 @@
-package notasIncompleto;
+package blocDeNotas2;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -6,20 +6,19 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JOptionPane;
 
 public class Libreta {
 
 	private final String NOMBRE_ARCHIVO = "ficheros/notas.txt";
-	private final int MAX_NOTAS = 1000;
 
-	private Nota[] notas;
-	private int numNotas;
+	private List<Nota> notas;
 
 	public Libreta() {
-		notas = new Nota[MAX_NOTAS];
-		numNotas = 0;
+		notas = new ArrayList<>();
 		leerNotas();
 	}
 
@@ -32,38 +31,31 @@ public class Libreta {
 		 * hacer nada.
 		 */
 
-		if (numNotas < MAX_NOTAS) {
-			notas[numNotas] = nota;
-			numNotas++;
-		}
+		notas.add(nota);
 
 	}
 
 	public void setNota(int posicion, Nota nota) {
 
-		notas[posicion] = nota;
+		notas.add(posicion, nota);
 
 	}
 
 	public Nota getNota(int posicion) {
 
-		return notas[posicion];
+		return notas.get(posicion);
 
 	}
 
 	public void delNota(int posicion) {
 
 		/*
-		 * Eliminar el elemento del array notas[] que ocupa la posición indicada. Para
-		 * ello, mueve hacia arriba todos los elementos que vengan a continuación una
-		 * posición, y actualiza la variable numNotas.
+		 * TODO: Eliminar el elemento del array notas[] que ocupa la posición indicada.
+		 * Para ello, mueve hacia arriba todos los elementos que vengan a continuación
+		 * una posición, y actualiza la variable numNotas.
 		 */
 
-		for (int i = posicion; i < numNotas - 1; i++) {
-			notas[i] = notas[i + 1];
-		}
-
-		numNotas--;
+		notas.remove(posicion);
 
 	}
 
@@ -80,10 +72,10 @@ public class Libreta {
 		 * los datos de los comentarios del archivo.
 		 */
 
-		// Este método lo que hace es comprobar si el objeto de tipo File exsiste
+		BufferedReader br = null;
 		try {
 
-			BufferedReader br = new BufferedReader(new FileReader(NOMBRE_ARCHIVO));
+			br = new BufferedReader(new FileReader(NOMBRE_ARCHIVO));
 			String linea = br.readLine();
 			String titulo;
 			while (linea != null) {
@@ -108,14 +100,6 @@ public class Libreta {
 				addNota(nota);
 				linea = br.readLine();
 			}
-			br.close();
-
-			// CÓDIGO DE PRUEBAS
-//				System.out.println("Array notas:");
-//				for (int i = 0; i < numNotas; i++) {
-//					System.out
-//							.println("Título: " + notas[i].getTitulo() + "\nDescripción: " + notas[i].getDescripcion());
-//				}
 
 		} catch (FileNotFoundException e) {
 			JOptionPane.showMessageDialog(null, "No se ha encontrado el archivo " + NOMBRE_ARCHIVO,
@@ -124,6 +108,16 @@ public class Libreta {
 		} catch (IOException e) {
 			JOptionPane.showMessageDialog(null, "No se ha podido leer el archivo de tareas" + NOMBRE_ARCHIVO,
 					"Error de E/S", JOptionPane.ERROR_MESSAGE);
+		} finally {
+
+			try {
+
+				br.close();
+			} catch (IOException e) {
+				JOptionPane.showMessageDialog(null, "No se ha podido leer el archivo de tareas" + NOMBRE_ARCHIVO,
+						"Error de E/S", JOptionPane.ERROR_MESSAGE);
+			}
+
 		}
 	}
 
@@ -139,9 +133,9 @@ public class Libreta {
 
 			BufferedWriter bw = new BufferedWriter(new FileWriter(NOMBRE_ARCHIVO));
 
-			for (int i = 0; i < numNotas; i++) {
+			for (Nota nota : notas) {
 
-				bw.write("TITULO=" + notas[i].getTitulo() + "\n" + "DESCRIPCION=" + notas[i].getDescripcion() + "\n");
+				bw.write("TITULO=" + nota.getTitulo() + "\n" + "DESCRIPCION=" + nota.getDescripcion() + "\n");
 
 			}
 
@@ -157,15 +151,11 @@ public class Libreta {
 	}
 
 	public int getNumNotas() {
-		return numNotas;
+		return notas.size();
 	}
 
 	public boolean hayEspacio() {
-		if (numNotas < MAX_NOTAS) {
-			return true;
-		}
-
-		return false;
+		return true;
 	}
 
 }
