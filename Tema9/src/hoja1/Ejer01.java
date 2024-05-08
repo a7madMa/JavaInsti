@@ -13,11 +13,9 @@ public class Ejer01 {
 		if (n > 1) {
 			// Caso recursivo.
 			return transforma(n / 2) + n % 2;
-		} else if (n == 1) {
+		} else if (n == 1 || n == 0) {
 			// Caso base.
-			return "1";
-		} else if (n == 0) {
-			return "0";
+			return "" + n;
 		} else {
 			return "ERROR";
 		}
