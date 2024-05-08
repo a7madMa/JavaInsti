@@ -1,4 +1,4 @@
-package hoja1;
+package ejemplosListas;
 
 import java.util.ArrayList;
 import java.util.List;
