@@ -4,7 +4,7 @@ public class Ejer01 {
 
 	public static void main(String[] args) {
 
-		System.out.println(transforma(5));
+		System.out.println(transforma(13));
 
 	}
 
