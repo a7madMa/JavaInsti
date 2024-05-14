@@ -1,18 +1,21 @@
 package hoja1;
 
 public class Ejer05 {
-	/*
-	 * Escribe un método que calcule recursivamente la suma de todos los números
-	 * enteros entre 1 y n.
-	 */
 
 	public static void main(String[] args) {
+		System.out.println(numeEnteros(10));
 
 	}
 
-	private static int numeroEntero(int num, int n) {
+	private static int numeEnteros(int n) {
 
-		return n;
-
+		if (n <= 1) {
+			// Caso base.
+			return n;
+		} else {
+			// Caso recursivo.
+			return n + (numeEnteros(n - 1));
+		}
 	}
+
 }
