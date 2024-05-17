@@ -15,9 +15,8 @@ public class Ejer08 {
 		}
 
 		// Caso Recursivo
-		int suma = (n % 10);
 
-		return suma + sumar(n / 10);
+		return n % 10 + sumar(n / 10);
 
 	}
 
