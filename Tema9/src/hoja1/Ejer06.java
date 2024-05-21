@@ -11,7 +11,6 @@ public class Ejer06 {
 		int min = min(array, array.length);
 
 		System.out.println("El mínimo del array es: " + min);
-
 	}
 
 	private static int min(int[] numeros, int numElementos) {
@@ -22,7 +21,14 @@ public class Ejer06 {
 
 		// Caso recursivo.
 
-		return Math.min(min(numeros, numElementos - 1), numeros[numElementos - 1]);
+		return minimo(min(numeros, numElementos - 1), numeros[numElementos - 1]);
 
 	}
+
+	// En vez de este método podriamos usar Math.min().
+	private static int minimo(int a, int b) {
+		return a < b ? a : b;
+
+	}
+
 }
