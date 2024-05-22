@@ -21,6 +21,7 @@ public class Ejer12 {
 			return true; // Si fin vale menos o igual a inicio, es palindromo
 
 		}
+		// Caso recursivo.
 		if (frase[inicio] == frase[fin]) {
 			return esPalindromo(frase, inicio + 1, fin - 1);
 
