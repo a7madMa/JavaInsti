@@ -26,6 +26,12 @@ public class Ejemplo05MapClases {
 		for (Mascota mascota : clinica.keySet()) {
 			System.out.println(mascota.getNombre() + clinica.get(mascota).toString() + "\n");
 		}
+
+		// Este código va a fallar si no creamos los métodos hashCode() y equals() en
+		// Propietario.
+
+		System.out.println("¿El propietario Agustin está en el mapa?"
+				+ clinica.containsValue(new Propietario("10020200G", "Agustín", "Lucero")));
 	}
 
 }
